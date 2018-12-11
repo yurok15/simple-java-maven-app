@@ -1,11 +1,7 @@
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
+parallel android: {
+    node("role:master") {
+        stage('SCM') {
+            checkout scm
         }
     }
-    stage('SCM') {
-            checkout scm
-        } 
 }
